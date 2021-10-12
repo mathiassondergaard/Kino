@@ -8,9 +8,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.net.URI;
-
-
-import java.net.URI;
 import java.net.URISyntaxException;
 
 @RestController
@@ -37,6 +34,13 @@ public class MovieController {
     public ResponseEntity<Movie> updateMovie (@PathVariable Long id, @RequestBody Movie movie) {
         Movie tmpMovie = movieService.updateMovie(movie, id);
         return ResponseEntity.ok().body(tmpMovie);
+    }
+
+    @DeleteMapping("/movie/{id}")
+    public ResponseEntity<?> deleteMovie(@PathVariable Long id) {
+        movieService.deleteMovie(id);
+        return ResponseEntity.ok().build();
+
     }
 
 }
