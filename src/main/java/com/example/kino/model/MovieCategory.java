@@ -1,6 +1,6 @@
 package com.example.kino.model;
 
-public enum MovieCategories {
+public enum MovieCategory {
     HORROR,
     ROMANCE,
     ACTION,

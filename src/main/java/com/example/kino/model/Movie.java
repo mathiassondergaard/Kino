@@ -28,9 +28,9 @@ public class Movie {
     @Column(name = "movie_duration")
     private String movieDuration;
 
-    @Column(name = "movie_categories")
+    @Column(name = "movie_category")
     @Enumerated(EnumType.STRING)
-    private MovieCategories movieCategories;
+    private MovieCategory movieCategory;
 
     @OneToMany(mappedBy = "actor")
     private List<Actor> actor;
