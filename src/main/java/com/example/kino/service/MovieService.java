@@ -15,4 +15,8 @@ public class MovieService {
     public Movie findById(Long id) {
         return movieRepository.findById(id).orElseThrow(()-> new NoResultException());
     }
+
+    public Movie saveMovie(Movie movie) {
+        return movieRepository.save(movie);
+    }
 }

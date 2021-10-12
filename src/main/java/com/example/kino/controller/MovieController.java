@@ -6,10 +6,12 @@ import com.example.kino.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import java.net.URI;
+
+
+import java.net.URI;
+import java.net.URISyntaxException;
 
 @RestController
 @CrossOrigin(value = "*")
@@ -23,6 +25,12 @@ public class MovieController {
     Movie movie = movieService.findById(id);
     return new ResponseEntity<> (movie, HttpStatus.OK);
 
+    }
+
+    @PostMapping(value = "/createMovie", consumes = "application/json")
+    public ResponseEntity<Movie> newMovie(@RequestBody Movie movie) throws URISyntaxException {
+        Movie result = movieService.saveMovie(movie);
+        return ResponseEntity.created(new URI("/getMovie/" + result.getMovieID())).body((result));
     }
 
 }
