@@ -29,10 +29,11 @@ public class Movie {
     private String movieDuration;
 
     @Column(name = "movie_age_restriction")
-    private boolean movieAgeRestriction;
+    private String movieAgeRestriction;
 
     @Column(name = "movie_category")
     @Enumerated(EnumType.STRING)
+    @Getter
     private MovieCategory movieCategory;
 
     @OneToMany(mappedBy = "actor")

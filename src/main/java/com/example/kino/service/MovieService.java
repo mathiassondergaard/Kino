@@ -19,4 +19,16 @@ public class MovieService {
     public Movie saveMovie(Movie movie) {
         return movieRepository.save(movie);
     }
+
+    public Movie updateMovie(Movie movie, Long id) {
+        Movie movieData = findById(id);
+        movieData.setMovieID(movie.getMovieID());
+        movieData.setMovieTitle(movie.getMovieTitle());
+        movieData.setMovieDuration(movie.getMovieDuration());
+        movieData.setMovieCategory(movie.getMovieCategory());
+        movieData.setMovieAgeRestriction(movie.getMovieAgeRestriction());
+
+        return movieRepository.save(movieData);
+
+    }
 }
