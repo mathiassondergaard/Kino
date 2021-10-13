@@ -28,7 +28,7 @@ public class MovieController {
         return new ResponseEntity<>(movie, HttpStatus.OK);
     }
 
-    @PostMapping(value = "/createMovie", consumes = "application/json")
+    @PostMapping(value = "/createMovie")
     public ResponseEntity<Movie> newMovie(@RequestBody Movie movie) throws URISyntaxException {
         Movie result = movieService.saveMovie(movie);
         return ResponseEntity.created(new URI("/getMovie/" + result.getMovieID())).body((result));
@@ -40,7 +40,7 @@ public class MovieController {
         return ResponseEntity.ok().body(tmpMovie);
     }
 
-    @DeleteMapping("/movie/{id}")
+    @DeleteMapping("/movie/delete/{id}")
     public ResponseEntity<?> deleteMovie(@PathVariable Long id) {
         movieService.deleteMovie(id);
         return ResponseEntity.ok().build();

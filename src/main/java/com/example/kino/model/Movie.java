@@ -19,7 +19,8 @@ public class Movie {
 
     @Id
     @Column(name = "movie_id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "movie_seq_gen")
+    @SequenceGenerator(name = "movie_seq_gen", sequenceName = "movie_seq_gen", allocationSize = 1)
     private Long movieID;
 
     @Column(name = "movie_title")
@@ -36,7 +37,8 @@ public class Movie {
     @Getter
     private MovieCategory movieCategory;
 
-    @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "movie", cascade = CascadeType.MERGE)
+    @ToString.Exclude
     private List<Actor> actors;
 
     @Override

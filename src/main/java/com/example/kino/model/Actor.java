@@ -17,13 +17,15 @@ import java.util.Objects;
 public class Actor {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "actor_seq_gen")
+    @SequenceGenerator(name = "actor_seq_gen", sequenceName = "actor_seq_gen", allocationSize = 1)
     @Column(name = "actor_id")
     private Long actorID;
 
     @Column(name = "actor_name")
     private String actorName;
 
-    @ManyToOne(cascade=CascadeType.MERGE)
+    @ManyToOne(cascade=CascadeType.ALL)
     @JoinColumn(name = "movie_id")
     private Movie movie;
 
