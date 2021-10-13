@@ -16,12 +16,11 @@ import java.util.List;
 public class MovieService {
 
     private MovieRepository movieRepository;
-    private ActorRepository actorRepository;
+
 
     @Autowired
-    public MovieService(MovieRepository movieRepository, ActorRepository actorRepository) {
+    public MovieService(MovieRepository movieRepository) {
         this.movieRepository = movieRepository;
-        this.actorRepository = actorRepository;
     }
 
     public Movie findById(Long id) {
