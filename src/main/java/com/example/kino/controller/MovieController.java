@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import java.net.URI;
 import java.net.URISyntaxException;
 
@@ -14,14 +15,17 @@ import java.net.URISyntaxException;
 @CrossOrigin(value = "*")
 public class MovieController {
 
-    @Autowired
     private MovieService movieService;
+
+    @Autowired
+    public MovieController(MovieService movieService) {
+        this.movieService = movieService;
+    }
 
     @GetMapping("/getMovie/{id}")
     public ResponseEntity<Movie> getMovie(@PathVariable Long id) {
-    Movie movie = movieService.findById(id);
-    return new ResponseEntity<> (movie, HttpStatus.OK);
-
+        Movie movie = movieService.findById(id);
+        return new ResponseEntity<>(movie, HttpStatus.OK);
     }
 
     @PostMapping(value = "/createMovie", consumes = "application/json")
@@ -31,7 +35,7 @@ public class MovieController {
     }
 
     @PutMapping("/updateMovie/{id}")
-    public ResponseEntity<Movie> updateMovie (@PathVariable Long id, @RequestBody Movie movie) {
+    public ResponseEntity<Movie> updateMovie(@PathVariable Long id, @RequestBody Movie movie) {
         Movie tmpMovie = movieService.updateMovie(movie, id);
         return ResponseEntity.ok().body(tmpMovie);
     }
@@ -40,7 +44,6 @@ public class MovieController {
     public ResponseEntity<?> deleteMovie(@PathVariable Long id) {
         movieService.deleteMovie(id);
         return ResponseEntity.ok().build();
-
     }
 
 }

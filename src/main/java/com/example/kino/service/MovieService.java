@@ -9,11 +9,15 @@ import javax.persistence.NoResultException;
 @Service
 public class MovieService {
 
+    private MovieRepository movieRepository;
+
     @Autowired
-    MovieRepository movieRepository;
+    public MovieService(MovieRepository movieRepository) {
+        this.movieRepository = movieRepository;
+    }
 
     public Movie findById(Long id) {
-        return movieRepository.findById(id).orElseThrow(()-> new NoResultException());
+        return movieRepository.findById(id).orElseThrow(()-> new NoResultException("Movie with id: " + id + " does not exist!"));
     }
 
     public Movie saveMovie(Movie movie) {

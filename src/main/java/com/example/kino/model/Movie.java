@@ -36,9 +36,8 @@ public class Movie {
     @Getter
     private MovieCategory movieCategory;
 
-    @OneToMany(mappedBy = "actor")
-    private List<Actor> actor;
-
+    @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL)
+    private List<Actor> actors;
 
     @Override
     public boolean equals(Object o) {

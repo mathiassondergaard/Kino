@@ -23,10 +23,9 @@ public class Actor {
     @Column(name = "actor_name")
     private String actorName;
 
-    @ManyToOne
+    @ManyToOne(cascade=CascadeType.MERGE)
     @JoinColumn(name = "movie_id")
     private Movie movie;
-
 
     @Override
     public boolean equals(Object o) {
