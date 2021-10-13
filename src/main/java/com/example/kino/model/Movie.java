@@ -37,7 +37,7 @@ public class Movie {
     @Getter
     private MovieCategory movieCategory;
 
-    @OneToMany(mappedBy = "movie", cascade = CascadeType.MERGE)
+    @OneToMany(mappedBy = "movie", cascade = CascadeType.PERSIST)
     @ToString.Exclude
     private List<Actor> actors;
 

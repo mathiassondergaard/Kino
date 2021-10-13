@@ -31,6 +31,10 @@ public class MovieService {
     @Transactional
     @Modifying
     public Movie saveMovie(Movie movie) {
+        List<Actor> actors = movie.getActors();
+        for (int i = 0; i < actors.size(); i++) {
+            actors.get(i).getMovie().setMovieID(movie.getMovieID());
+        }
         /*
         List<Actor> actors = movie.getActors();
         for (int i = 0; i < actors.size(); i++) {
