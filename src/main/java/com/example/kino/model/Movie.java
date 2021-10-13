@@ -6,6 +6,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 
@@ -15,7 +16,9 @@ import java.util.Objects;
 @RequiredArgsConstructor
 @Entity
 @Table(name = "movie")
-public class Movie {
+public class Movie implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @Id
     @Column(name = "movie_id")
@@ -37,9 +40,8 @@ public class Movie {
     @Getter
     private MovieCategory movieCategory;
 
-    @OneToMany(mappedBy = "movie", cascade = CascadeType.PERSIST)
-    @ToString.Exclude
-    private List<Actor> actors;
+    @Column(name = "movie_actors")
+    private String movieActors;
 
     @Override
     public boolean equals(Object o) {
