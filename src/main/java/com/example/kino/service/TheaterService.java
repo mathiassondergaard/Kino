@@ -10,6 +10,8 @@ import javax.persistence.NoResultException;
 import javax.transaction.Transactional;
 import java.util.List;
 
+//Does it really make sense to have this serviceclass?
+
 @Service
 public class TheaterService {
 

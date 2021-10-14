@@ -7,7 +7,8 @@ import lombok.ToString;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.time.LocalDate;
+
+//TODO: Evaluate entity relationships
 
 @Getter
 @Setter@ToString

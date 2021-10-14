@@ -10,6 +10,8 @@ import javax.persistence.NoResultException;
 import javax.transaction.Transactional;
 import java.util.List;
 
+//TODO: Business logic implementation
+
 @Service
 public class ShowingService {
 
