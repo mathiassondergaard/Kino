@@ -12,7 +12,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 
 @RestController
-@CrossOrigin(value = "*")
+@CrossOrigin(origins = "http://localhost:63342")
 public class MovieController {
 
     private MovieService movieService;
@@ -30,7 +30,12 @@ public class MovieController {
 
     @PostMapping(value = "/createMovie")
     public ResponseEntity<Movie> newMovie(@RequestBody Movie movie) throws URISyntaxException {
-        Movie result = movieService.saveMovie(movie);
+        Movie result = null;
+        try {
+           result = movieService.saveMovie(movie);
+        } catch (Exception e) {
+            return ResponseEntity.created(new URI("/getMovie/" + result.getMovieID())).body((result));
+        }
         return ResponseEntity.created(new URI("/getMovie/" + result.getMovieID())).body((result));
     }
 
