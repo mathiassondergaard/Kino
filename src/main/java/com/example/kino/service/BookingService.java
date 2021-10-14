@@ -4,10 +4,12 @@ import com.example.kino.model.Booking;
 import com.example.kino.repository.BookingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.stereotype.Service;
 
 import javax.persistence.NoResultException;
 import javax.transaction.Transactional;
 
+@Service
 public class BookingService {
 
     private BookingRepository bookingRepository;
