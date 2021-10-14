@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Service;
 import javax.persistence.NoResultException;
 import javax.transaction.Transactional;
+import java.util.List;
 
 
 @Service
@@ -23,6 +24,11 @@ public class MovieService {
 
     public Movie findById(Long id) {
         return movieRepository.findById(id).orElseThrow(()-> new NoResultException("Movie with id: " + id + " does not exist!"));
+    }
+
+
+    public List<Movie> findAllMovies() {
+        return movieRepository.findAll();
     }
 
     @Transactional

@@ -3,6 +3,7 @@ package com.example.kino.controller;
 
 import com.example.kino.model.Movie;
 import com.example.kino.service.MovieService;
+import net.bytebuddy.asm.Advice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:63342")
@@ -49,6 +51,12 @@ public class MovieController {
     public ResponseEntity<?> deleteMovie(@PathVariable Long id) {
         movieService.deleteMovie(id);
         return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/showAllMovies")
+    public ResponseEntity<Movie> showAllMovies(){
+        List<Movie> movies = movieService.findAllMovies();
+        return new ResponseEntity(movies, HttpStatus.OK);
     }
 
 }
