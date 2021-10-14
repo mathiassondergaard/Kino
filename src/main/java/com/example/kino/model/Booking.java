@@ -6,6 +6,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.sql.Date;
 import java.sql.Time;
 import java.util.Objects;
@@ -16,10 +17,15 @@ import java.util.Objects;
 @RequiredArgsConstructor
 @Entity
 @Table(name = "booking")
-public class Booking {
+public class Booking implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
     @Id
     @Column(name = "booking_id")
     private Long bookingId;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "booking_seq_gen")
+    @SequenceGenerator(name = "booking_seq_gen", sequenceName = "booking_seq_gen", allocationSize = 1)
 
     @Column(name = "booking_date")
     private Date date;
