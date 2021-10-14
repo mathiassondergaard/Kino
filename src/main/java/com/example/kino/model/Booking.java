@@ -27,11 +27,6 @@ public class Booking implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "booking_seq_gen")
     @SequenceGenerator(name = "booking_seq_gen", sequenceName = "booking_seq_gen", allocationSize = 1)
 
-    @Column(name = "booking_date")
-    private Date date;
-
-    @Column(name = "booking_time")
-    private Time time;
 
     @Column(name = "booking_seats")
     private int nrOfAssignedSeats;
