@@ -20,24 +20,26 @@ public class BookingService {
     }
 
     public Booking findById(Long id) {
-        return bookingRepository.findById(id).orElseThrow(() -> new NoResultException("Booking with id: "+ id + "does not exist!"));
+        return bookingRepository.findById(id).orElseThrow(() -> new NoResultException("Booking with id: " + id + "does not exist!"));
     }
 
     @Transactional
     @Modifying
-    public Booking saveBooking(Booking booking) { return bookingRepository.save(booking);}
+    public Booking saveBooking(Booking booking) {
+        return bookingRepository.save(booking);
+    }
 
     @Transactional
     @Modifying
     public Booking updateBooking(Booking booking, Long id) {
-        Booking bookingData = bookingRepository.findById(id).orElseThrow(() -> new NoResultException("Booking with id: "+ id + "does not exist!"));
+        Booking bookingData = bookingRepository.findById(id).orElseThrow(() -> new NoResultException("Booking with id: " + id + "does not exist!"));
         bookingData.setBookingId(booking.getBookingId());
-        // mathias hjælp -> booking.setDate();
         booking.setTheater(booking.getTheater());
-        // booking.setTime();
         booking.setNrOfAssignedSeats(booking.getNrOfAssignedSeats());
         return bookingRepository.save(bookingData);
     }
 
-    public void deleteBooking(Long id) { bookingRepository.deleteById(id);}
+    public void deleteBooking(Long id) {
+        bookingRepository.deleteById(id);
+    }
 }
