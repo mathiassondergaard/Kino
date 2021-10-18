@@ -22,24 +22,20 @@ public class ShowingController {
         this.showingService = showingService;
     }
 
-    @GetMapping("/GetShowing/{id}")
+    @GetMapping("/saveShowing")
         public ResponseEntity<Showing> newShowing(@RequestBody Showing showing) throws URISyntaxException {
         Showing result = null;
-        try {
-            result = showingService.saveShowing(showing);
-        } catch (Exception e) {
-            return ResponseEntity.created(new URI("/GetShowing/" + result.getShowingId())).body((result));
-        }
+        result = showingService.saveShowing(showing);
         return ResponseEntity.created(new URI("/GetShowing/" + result.getShowingId())).body((result));
     }
 
-    @PutMapping("/UpdateShowing/{id}")
+    @PutMapping("/updateShowing/{id}")
     public ResponseEntity<Showing> updateShowing(@PathVariable Long id, @RequestBody Showing showing) {
         Showing tmpShowing = showingService.updateShowing(showing, id);
         return ResponseEntity.ok().body(tmpShowing);
     }
 
-    @DeleteMapping("Showing/delete/{id}")
+    @DeleteMapping("/showing/delete/{id}")
     public ResponseEntity<?> deleteShowing(@PathVariable Long id) {
         showingService.deleteShowing(id);
         return ResponseEntity.ok().build();

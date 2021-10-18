@@ -24,7 +24,7 @@ public class TheaterController {
         this.theaterService = theaterService;
     }
 
-    @GetMapping("/GetTheater/{id}")
+    @GetMapping("/getTheater/{id}")
     public ResponseEntity<Theater> getTheater(@PathVariable long id) {
         Theater theater = theaterService.findById(id);
         return new ResponseEntity<>(theater, HttpStatus.OK);

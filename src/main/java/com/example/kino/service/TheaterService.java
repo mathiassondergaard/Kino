@@ -24,13 +24,10 @@ public class TheaterService {
 
     public Theater findById(Long id) {
         return theaterRepository.findById(id).orElseThrow(() -> new NoResultException("No theater with id:" + id + " exists!"));
-
     }
 
     public List<Theater> findAllTheaters() { return theaterRepository.findAll();}
 
-    @Transactional
-    @Modifying
     public Theater updateTheater(Theater theater, Long id) {
         Theater theaterData = theaterRepository.findById(id).orElseThrow(() -> new NoResultException("No theater with id:" + id + " exists!"));
         theaterData.setTheaterId(theater.getTheaterId());

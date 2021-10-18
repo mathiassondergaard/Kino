@@ -30,14 +30,10 @@ public class ShowingService {
         return showingRepository.findAll();
     }
 
-    @Transactional
-    @Modifying
     public Showing saveShowing(Showing showing) {
         return showingRepository.save(showing);
     }
 
-    @Transactional
-    @Modifying
     public Showing updateShowing(Showing showing, Long id) {
         Showing showingData = showingRepository.findById(id).orElseThrow(() -> new NoResultException("Showing with id:" + id + " does not exist!"));
         showingData.setShowingId(showing.getShowingId());

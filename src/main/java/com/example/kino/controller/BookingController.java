@@ -21,7 +21,7 @@ public class BookingController {
         this.bookingService = bookingService;
     }
 
-    @GetMapping("/GetBooking/{id}")
+    @GetMapping("/getBooking/{id}")
     public ResponseEntity<Booking> getBooking(@PathVariable Long id) {
         Booking booking = bookingService.findById(id);
         return new ResponseEntity<>(booking, HttpStatus.OK);
@@ -30,11 +30,7 @@ public class BookingController {
     @PostMapping("/createBooking")
     public ResponseEntity<Booking> newBooking(@RequestBody Booking booking) throws URISyntaxException {
         Booking result = null;
-        try {
-            result = bookingService.saveBooking(booking);
-        } catch (Exception e) {
-            return ResponseEntity.created(new URI("/getBooking/" + result.getBookingId())).body((result));
-        }
+        result = bookingService.saveBooking(booking);
         return ResponseEntity.created(new URI("/getBooking/" + result.getBookingId())).body((result));
     }
 

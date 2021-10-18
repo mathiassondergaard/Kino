@@ -23,14 +23,10 @@ public class BookingService {
         return bookingRepository.findById(id).orElseThrow(() -> new NoResultException("Booking with id: " + id + "does not exist!"));
     }
 
-    @Transactional
-    @Modifying
     public Booking saveBooking(Booking booking) {
         return bookingRepository.save(booking);
     }
 
-    @Transactional
-    @Modifying
     public Booking updateBooking(Booking booking, Long id) {
         Booking bookingData = bookingRepository.findById(id).orElseThrow(() -> new NoResultException("Booking with id: " + id + "does not exist!"));
         bookingData.setBookingId(booking.getBookingId());

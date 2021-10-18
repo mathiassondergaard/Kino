@@ -33,11 +33,7 @@ public class MovieController {
     @PostMapping(value = "/createMovie")
     public ResponseEntity<Movie> newMovie(@RequestBody Movie movie) throws URISyntaxException {
         Movie result = null;
-        try {
-           result = movieService.saveMovie(movie);
-        } catch (Exception e) {
-            return ResponseEntity.created(new URI("/getMovie/" + result.getMovieID())).body((result));
-        }
+        result = movieService.saveMovie(movie);
         return ResponseEntity.created(new URI("/getMovie/" + result.getMovieID())).body((result));
     }
 
@@ -54,9 +50,9 @@ public class MovieController {
     }
 
     @GetMapping("/showAllMovies")
-    public ResponseEntity<Movie> showAllMovies(){
+    public ResponseEntity<List<Movie>> showAllMovies(){
         List<Movie> movies = movieService.findAllMovies();
-        return new ResponseEntity(movies, HttpStatus.OK);
+        return new ResponseEntity<>(movies, HttpStatus.OK);
     }
 
 }

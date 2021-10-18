@@ -32,8 +32,6 @@ public class MovieService extends Utilities {
         return movieRepository.findAll();
     }
 
-    @Transactional
-    @Modifying
     public Movie saveMovie(Movie movie) {
         if (dateChecker(movie.getUtilStartDate(), movie.getUtilEndDate())) {
             throw new DateTimeException("End date cannot be before start date");
@@ -41,8 +39,6 @@ public class MovieService extends Utilities {
         return movieRepository.save(movie);
     }
 
-    @Transactional
-    @Modifying
     public Movie updateMovie(Movie movie, Long id) {
         Movie movieData = movieRepository.findById(id).orElseThrow(()-> new NoResultException("Movie with id: " + id + " does not exist!"));
         movieData.setMovieID(movie.getMovieID());
