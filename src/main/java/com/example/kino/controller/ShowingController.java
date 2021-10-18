@@ -1,11 +1,48 @@
 package com.example.kino.controller;
 
+import com.example.kino.model.Showing;
+import com.example.kino.service.ShowingService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.*;
 
-//TODO: Fix this controller
+import java.net.URI;
+import java.net.URISyntaxException;
+
 
 @Controller
-@CrossOrigin
+@CrossOrigin(origins = "http://localhost:63342")
 public class ShowingController {
+
+    private ShowingService showingService;
+
+    @Autowired
+    public ShowingController(ShowingService showingService) {
+        this.showingService = showingService;
+    }
+
+    @GetMapping("/GetShowing/{id}")
+        public ResponseEntity<Showing> newShowing(@RequestBody Showing showing) throws URISyntaxException {
+        Showing result = null;
+        try {
+            result = showingService.saveShowing(showing);
+        } catch (Exception e) {
+            return ResponseEntity.created(new URI("/GetShowing/" + result.getShowingId())).body((result));
+        }
+        return ResponseEntity.created(new URI("/GetShowing/" + result.getShowingId())).body((result));
+    }
+
+    @PutMapping("/UpdateShowing/{id}")
+    public ResponseEntity<Showing> updateShowing(@PathVariable Long id, @RequestBody Showing showing) {
+        Showing tmpShowing = showingService.updateShowing(showing, id);
+        return ResponseEntity.ok().body(tmpShowing);
+    }
+
+    @DeleteMapping("Showing/delete/{id}")
+    public ResponseEntity<?> deleteShowing(@PathVariable Long id) {
+        showingService.deleteShowing(id);
+        return ResponseEntity.ok().build();
+    }
+
 }
