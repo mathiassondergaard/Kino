@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 //TODO: Fix this controller - Show current and maybe upcoming showings?
 
 @Controller
-@CrossOrigin(origins = "http://localhost:63342")
+@CrossOrigin(origins = {"http://localhost:63342", "http://localhost:5000"})
 public class TheaterController {
 
     private TheaterService theaterService;

@@ -12,7 +12,7 @@ import java.net.URISyntaxException;
 
 
 @Controller
-@CrossOrigin(origins = "http://localhost:63342")
+@CrossOrigin(origins = {"http://localhost:63342", "http://localhost:5000"})
 public class ShowingController {
 
     private ShowingService showingService;

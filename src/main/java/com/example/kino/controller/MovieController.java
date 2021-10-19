@@ -14,7 +14,7 @@ import java.net.URISyntaxException;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:63342")
+@CrossOrigin(origins = {"http://localhost:63342", "http://localhost:5000"})
 public class MovieController {
 
     private MovieService movieService;

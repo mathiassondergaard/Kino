@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.NoResultException;
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Service
 public class BookingService {
@@ -21,6 +22,15 @@ public class BookingService {
 
     public Booking findById(Long id) {
         return bookingRepository.findById(id).orElseThrow(() -> new NoResultException("Booking with id: " + id + "does not exist!"));
+    }
+
+    public List<Booking> getAllBookings() {
+        try {
+            return bookingRepository.findAll();
+        }
+        catch (Exception e) {
+            throw new NoResultException("No bookings exist in system!");
+        }
     }
 
     public Booking saveBooking(Booking booking) {

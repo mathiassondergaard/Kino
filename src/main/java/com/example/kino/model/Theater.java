@@ -26,10 +26,8 @@ public class Theater {
     @Column(name = "end_time")
     private String endTime;
 
-    @OneToOne
-    @JoinColumn
-    @Column(name = "movie")
+    @OneToOne(cascade = {CascadeType.MERGE, CascadeType.DETACH})
+    @JoinColumn(name = "movie_movie_id")
     private Movie movie;
-
 
 }

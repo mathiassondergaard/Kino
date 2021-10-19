@@ -21,10 +21,9 @@ public class Booking implements Serializable {
 
     @Id
     @Column(name = "booking_id")
-    private Long bookingId;
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "booking_seq_gen")
     @SequenceGenerator(name = "booking_seq_gen", sequenceName = "booking_seq_gen", allocationSize = 1)
-
+    private Long bookingId;
 
     @Column(name = "booking_seats")
     private int nrOfAssignedSeats;
