@@ -1,5 +1,5 @@
 INSERT INTO `movie` (`movie_id`, `movie_actors`, `movie_age_restriction`, `movie_category`, `movie_duration`, `movie_title`) VALUES (1, 'Sam Worthington, Sigourney Weaver', '13', 'SCIFI', '2H42M', 'Avatar');
-INSERT INTO `movie` (`movie_id`, `movie_actors`, `movie_age_restriction`, `movie_category`, `movie_duration`, `movie_title`) VALUES (1, 'Daniel Craig, Ana De Armas', '15', 'ACTION', '2H44', 'No Time To Die');
-INSERT INTO `movie` (`movie_id`, `movie_actors`, `movie_age_restriction`, `movie_category`, `movie_duration`, `movie_title`) VALUES (1, 'Humphrey Bogart, Ingred Bergman', '18', 'REOMANCE', '1H42M', 'Casablanca(1942)');
-INSERT INTO `movie` (`movie_id`, `movie_actors`, `movie_age_restriction`, `movie_category`, `movie_duration`, `movie_title`) VALUES (1, 'Johnny Depp, Heather Langenkamp', '15', 'HORROR', '1H31M', 'A Nightmare On Elm Street');
-INSERT INTO `movie` (`movie_id`, `movie_actors`, `movie_age_restriction`, `movie_category`, `movie_duration`, `movie_title`) VALUES (1, 'Channing Tatum, Ice Cube, Jonah Hill', '13', 'COMEDY', '1H49M', '21 Jump Street');
+INSERT INTO `movie` (`movie_id`, `movie_actors`, `movie_age_restriction`, `movie_category`, `movie_duration`, `movie_title`) VALUES (2, 'Daniel Craig, Ana De Armas', '15', 'ACTION', '2H44', 'No Time To Die');
+INSERT INTO `movie` (`movie_id`, `movie_actors`, `movie_age_restriction`, `movie_category`, `movie_duration`, `movie_title`) VALUES (3, 'Humphrey Bogart, Ingrid Bergman', '18', 'ROMANCE', '1H42M', 'Casablanca(1942)');
+INSERT INTO `movie` (`movie_id`, `movie_actors`, `movie_age_restriction`, `movie_category`, `movie_duration`, `movie_title`) VALUES (4, 'Johnny Depp, Heather Langenkamp', '15', 'HORROR', '1H31M', 'A Nightmare On Elm Street');
+INSERT INTO `movie` (`movie_id`, `movie_actors`, `movie_age_restriction`, `movie_category`, `movie_duration`, `movie_title`) VALUES (5, 'Channing Tatum, Ice Cube, Jonah Hill', '13', 'COMEDY', '1H49M', '21 Jump Street');

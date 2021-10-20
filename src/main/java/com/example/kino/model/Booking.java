@@ -41,7 +41,7 @@ public class Booking implements Serializable {
     private LocalDate showingDate;
 
     @Column(name = "showing_time")
-    private LocalTime showingTime;
+    private String showingTime;
 
     @Override
     public boolean equals(Object o) {
