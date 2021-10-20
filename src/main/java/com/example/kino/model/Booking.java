@@ -31,6 +31,10 @@ public class Booking implements Serializable {
     @Column(name = "booking_theater")
     private String theater;
 
+    @OneToOne(cascade = {CascadeType.MERGE, CascadeType.DETACH})
+    @JoinColumn(name = "movie_id")
+    private Movie movie;
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

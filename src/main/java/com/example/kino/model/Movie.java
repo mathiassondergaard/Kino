@@ -44,14 +44,6 @@ public class Movie implements Serializable {
     @Column(name = "movie_actors")
     private String movieActors;
 
-    @Column(name = "start_date")
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate utilStartDate;
-
-    @Column(name = "end_date")
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate utilEndDate;
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

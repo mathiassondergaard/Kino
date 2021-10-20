@@ -17,7 +17,6 @@ public class MovieService extends Utilities {
 
     private MovieRepository movieRepository;
 
-
     @Autowired
     public MovieService(MovieRepository movieRepository) {
         this.movieRepository = movieRepository;
@@ -26,7 +25,6 @@ public class MovieService extends Utilities {
     public Movie findById(Long id) {
         return movieRepository.findById(id).orElseThrow(()-> new NoResultException("Movie with id: " + id + " does not exist!"));
     }
-
 
     public List<Movie> findAllMovies() {
         return movieRepository.findAll();

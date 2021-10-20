@@ -1,7 +1,10 @@
 package com.example.kino.controller;
 
 import com.example.kino.model.Booking;
+import com.example.kino.model.Movie;
+import com.example.kino.payload.request.BookingRequest;
 import com.example.kino.service.BookingService;
+import com.example.kino.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,10 +20,12 @@ import java.util.List;
 public class BookingController {
 
     private BookingService bookingService;
+    private MovieService movieService;
 
     @Autowired
-    public BookingController(BookingService bookingService) {
+    public BookingController(BookingService bookingService, MovieService movieService) {
         this.bookingService = bookingService;
+        this.movieService = movieService;
     }
 
     @GetMapping("/booking/{id}")
@@ -36,16 +41,10 @@ public class BookingController {
     }
 
     @PostMapping("/booking/createBooking")
-    public ResponseEntity<Booking> newBooking(@RequestBody Booking booking) throws URISyntaxException {
-        Booking result = null;
-        result = bookingService.saveBooking(booking);
+    public ResponseEntity<Booking> newBooking(@RequestBody BookingRequest bookingRequest) throws URISyntaxException {
+        Movie movieFromRequest = movieService.findById(bookingRequest.getMovieId());
+        Booking result = bookingService.saveBooking(bookingRequest, movieFromRequest);
         return ResponseEntity.created(new URI("/getBooking/" + result.getBookingId())).body((result));
-    }
-
-    @PutMapping("/booking/edit/{id}")
-    public ResponseEntity<Booking> updateBooking(@PathVariable Long id, @RequestBody Booking booking) {
-        Booking tmpBooking = bookingService.updateBooking(booking, id);
-        return ResponseEntity.ok().body(tmpBooking);
     }
 
     @DeleteMapping("/booking/delete/{id}")

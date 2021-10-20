@@ -1,6 +1,8 @@
 package com.example.kino.service;
 
 import com.example.kino.model.Booking;
+import com.example.kino.model.Movie;
+import com.example.kino.payload.request.BookingRequest;
 import com.example.kino.repository.BookingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.Modifying;
@@ -33,19 +35,17 @@ public class BookingService {
         }
     }
 
-    public Booking saveBooking(Booking booking) {
+    public Booking saveBooking(BookingRequest bookingRequest, Movie movie) {
+        Booking booking = new Booking();
+        booking.setNrOfAssignedSeats(bookingRequest.getNrOfAssignedSeats());
+        booking.setTheater(bookingRequest.getTheater());
+        booking.setMovie(movie);
         return bookingRepository.save(booking);
     }
 
-    public Booking updateBooking(Booking booking, Long id) {
-        Booking bookingData = bookingRepository.findById(id).orElseThrow(() -> new NoResultException("Booking with id: " + id + "does not exist!"));
-        bookingData.setBookingId(booking.getBookingId());
-        booking.setTheater(booking.getTheater());
-        booking.setNrOfAssignedSeats(booking.getNrOfAssignedSeats());
-        return bookingRepository.save(bookingData);
-    }
-
     public void deleteBooking(Long id) {
-        bookingRepository.deleteById(id);
+        Booking booking = bookingRepository.findById(id).orElseThrow(() -> new NoResultException("Booking with id: " + id + "does not exist!"));
+        booking.setMovie(null);
+        bookingRepository.delete(booking);
     }
 }
