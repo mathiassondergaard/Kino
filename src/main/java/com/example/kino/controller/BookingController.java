@@ -3,6 +3,7 @@ package com.example.kino.controller;
 import com.example.kino.model.Booking;
 import com.example.kino.model.Movie;
 import com.example.kino.payload.request.BookingRequest;
+import com.example.kino.payload.response.BookingResponse;
 import com.example.kino.service.BookingService;
 import com.example.kino.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,22 +31,36 @@ public class BookingController {
     }
 
     @GetMapping("/booking/{id}")
-    public ResponseEntity<Booking> getBooking(@PathVariable Long id) {
-        Booking booking = bookingService.findById(id);
-        return new ResponseEntity<>(booking, HttpStatus.OK);
+    public ResponseEntity<BookingResponse> getBooking(@PathVariable Long id) {
+        Booking result = bookingService.findById(id);
+        return ResponseEntity.ok(new BookingResponse(
+                result.getBookingId(),
+                result.getNrOfAssignedSeats(),
+                result.getTheater(),
+                result.getMovie().getMovieTitle(),
+                result.getShowingDate(),
+                result.getShowingTime()
+        ));
     }
 
     @GetMapping("/bookings")
-    public ResponseEntity<List<Booking>> getAllBookings() {
-        List<Booking> bookings = bookingService.getAllBookings();
+    public ResponseEntity<List<BookingResponse>> getAllBookings() {
+        List<BookingResponse> bookings = bookingService.getAllBookings();
         return new ResponseEntity<>(bookings, HttpStatus.OK);
     }
 
     @PostMapping("/booking/createBooking")
-    public ResponseEntity<Booking> newBooking(@RequestBody @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) BookingRequest bookingRequest) throws URISyntaxException {
+    public ResponseEntity<BookingResponse> newBooking(@RequestBody @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) BookingRequest bookingRequest) throws URISyntaxException {
         Movie movieFromRequest = movieService.findById(bookingRequest.getMovieId());
         Booking result = bookingService.saveBooking(bookingRequest, movieFromRequest);
-        return ResponseEntity.created(new URI("/getBooking/" + result.getBookingId())).body((result));
+        return ResponseEntity.ok(new BookingResponse(
+                result.getBookingId(),
+                result.getNrOfAssignedSeats(),
+                result.getTheater(),
+                result.getMovie().getMovieTitle(),
+                result.getShowingDate(),
+                result.getShowingTime()
+        ));
     }
 
     @DeleteMapping("/booking/delete/{id}")

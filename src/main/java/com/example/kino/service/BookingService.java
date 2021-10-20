@@ -3,6 +3,7 @@ package com.example.kino.service;
 import com.example.kino.model.Booking;
 import com.example.kino.model.Movie;
 import com.example.kino.payload.request.BookingRequest;
+import com.example.kino.payload.response.BookingResponse;
 import com.example.kino.repository.BookingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.Modifying;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.NoResultException;
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -26,9 +28,21 @@ public class BookingService {
         return bookingRepository.findById(id).orElseThrow(() -> new NoResultException("Booking with id: " + id + "does not exist!"));
     }
 
-    public List<Booking> getAllBookings() {
+    public List<BookingResponse> getAllBookings() {
         try {
-            return bookingRepository.findAll();
+            List<Booking> bookingList = bookingRepository.findAll();
+            List<BookingResponse> bookingListToReturn = new ArrayList<>();
+            for (int i = 0; i < bookingList.size(); i++) {
+                bookingListToReturn.add(new BookingResponse(
+                        bookingList.get(i).getBookingId(),
+                        bookingList.get(i).getNrOfAssignedSeats(),
+                        bookingList.get(i).getTheater(),
+                        bookingList.get(i).getMovie().getMovieTitle(),
+                        bookingList.get(i).getShowingDate(),
+                        bookingList.get(i).getShowingTime()
+                ));
+            }
+            return bookingListToReturn;
         }
         catch (Exception e) {
             throw new NoResultException("No bookings exist in system!");

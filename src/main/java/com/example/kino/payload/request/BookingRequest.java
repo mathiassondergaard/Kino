@@ -6,8 +6,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.ToString;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
-import java.time.LocalTime;
 
 @Data
 @RequiredArgsConstructor
@@ -19,7 +19,9 @@ public class BookingRequest {
     @NotBlank
     private String theater;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
+    @NotNull
     private LocalDate showingDate;
+    @NotBlank
     private String showingTime;
     @NotBlank
     private Long movieId;
