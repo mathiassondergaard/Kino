@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.NoResultException;
 import javax.transaction.Transactional;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,6 +47,14 @@ public class BookingService {
         }
         catch (Exception e) {
             throw new NoResultException("No bookings exist in system!");
+        }
+    }
+
+    public List<BookingResponse> getBookingsFromDate(LocalDate localDate) {
+        try {
+            return bookingRepository.findBookingsMatchingDate(localDate);
+        } catch (Exception e) {
+            throw new NoResultException("No bookings exist for date: " + localDate);
         }
     }
 

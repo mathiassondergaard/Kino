@@ -18,7 +18,7 @@ public class BookingRequest {
     int nrOfAssignedSeats;
     @NotBlank
     private String theater;
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     @NotNull
     private LocalDate showingDate;
     @NotBlank

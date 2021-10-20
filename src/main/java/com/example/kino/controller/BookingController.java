@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.awt.print.Book;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -43,9 +44,15 @@ public class BookingController {
         ));
     }
 
-    @GetMapping("/bookings")
+    @GetMapping("/booking/bookings")
     public ResponseEntity<List<BookingResponse>> getAllBookings() {
         List<BookingResponse> bookings = bookingService.getAllBookings();
+        return new ResponseEntity<>(bookings, HttpStatus.OK);
+    }
+
+    @GetMapping("/booking/bookingsFromDate/{localDate}")
+    public ResponseEntity<List<BookingResponse>> getBookingsFromDate(@PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate localDate ) {
+        List<BookingResponse> bookings = bookingService.getBookingsFromDate(localDate);
         return new ResponseEntity<>(bookings, HttpStatus.OK);
     }
 
