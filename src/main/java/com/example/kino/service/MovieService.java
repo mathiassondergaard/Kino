@@ -31,9 +31,6 @@ public class MovieService extends Utilities {
     }
 
     public Movie saveMovie(Movie movie) {
-        if (dateChecker(movie.getUtilStartDate(), movie.getUtilEndDate())) {
-            throw new DateTimeException("End date cannot be before start date");
-        }
         return movieRepository.save(movie);
     }
 

@@ -6,6 +6,7 @@ import com.example.kino.payload.request.BookingRequest;
 import com.example.kino.service.BookingService;
 import com.example.kino.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -41,7 +42,7 @@ public class BookingController {
     }
 
     @PostMapping("/booking/createBooking")
-    public ResponseEntity<Booking> newBooking(@RequestBody BookingRequest bookingRequest) throws URISyntaxException {
+    public ResponseEntity<Booking> newBooking(@RequestBody @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) BookingRequest bookingRequest) throws URISyntaxException {
         Movie movieFromRequest = movieService.findById(bookingRequest.getMovieId());
         Booking result = bookingService.saveBooking(bookingRequest, movieFromRequest);
         return ResponseEntity.created(new URI("/getBooking/" + result.getBookingId())).body((result));

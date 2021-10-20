@@ -7,6 +7,8 @@ import lombok.ToString;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Objects;
 
 @Getter
@@ -34,6 +36,12 @@ public class Booking implements Serializable {
     @OneToOne(cascade = {CascadeType.MERGE, CascadeType.DETACH})
     @JoinColumn(name = "movie_id")
     private Movie movie;
+
+    @Column(name = "showing_date")
+    private LocalDate showingDate;
+
+    @Column(name = "showing_time")
+    private LocalTime showingTime;
 
     @Override
     public boolean equals(Object o) {

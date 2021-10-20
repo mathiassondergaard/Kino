@@ -39,6 +39,8 @@ public class BookingService {
         Booking booking = new Booking();
         booking.setNrOfAssignedSeats(bookingRequest.getNrOfAssignedSeats());
         booking.setTheater(bookingRequest.getTheater());
+        booking.setShowingDate(bookingRequest.getShowingDate());
+        booking.setShowingTime(bookingRequest.getShowingTime());
         booking.setMovie(movie);
         return bookingRepository.save(booking);
     }
