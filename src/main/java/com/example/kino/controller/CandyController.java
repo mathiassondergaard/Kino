@@ -12,7 +12,7 @@ import java.net.URISyntaxException;
 import java.util.List;
 
 @RestController
-@CrossOrigin(value = "*")
+@CrossOrigin(value = "http://localhost:63342")
 public class CandyController {
 
     private CandyService candyService;

@@ -34,7 +34,7 @@ public class CandyService {
         Candy candyData = candyRepository.findById(id).orElseThrow(()-> new NoResultException("Candy with id: " + id + " does not exist!"));
         candyData.setCandyID(candy.getCandyID());
         candyData.setCandyName(candy.getCandyName());
-        candyData.setPrice(candy.getPrice());
+        candyData.setCandyPrice(candy.getCandyPrice());
         return candyRepository.save(candyData);
     }
 

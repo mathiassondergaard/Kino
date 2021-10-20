@@ -30,12 +30,6 @@ public class MovieController {
         return new ResponseEntity<>(movie, HttpStatus.OK);
     }
 
-    @GetMapping("/showAllMovies")
-    public List<Movie> allMovies() {
-        return movieService.findAllMovies();
-    }
-
-
     @PostMapping(value = "/createMovie")
     public ResponseEntity<Movie> newMovie(@RequestBody Movie movie) throws URISyntaxException {
         Movie result = null;

@@ -27,7 +27,7 @@ public class Candy {
     private String candyName;
 
     @Column(name = "candy_price")
-    private double price;
+    private Double candyPrice;
 
     @Override
     public boolean equals(Object o) {
