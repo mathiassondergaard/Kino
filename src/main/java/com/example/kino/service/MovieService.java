@@ -1,5 +1,6 @@
 package com.example.kino.service;
 
+
 import com.example.kino.model.Movie;
 import com.example.kino.repository.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 import javax.persistence.NoResultException;
 import javax.transaction.Transactional;
 import java.util.List;
+
 
 @Service
 public class MovieService {
@@ -25,6 +27,12 @@ public class MovieService {
     }
 
 
+    public List<Movie> findAllMovies() {
+        return movieRepository.findAll();
+    }
+
+    @Transactional
+    @Modifying
     public Movie saveMovie(Movie movie) {
         return movieRepository.save(movie);
     }
