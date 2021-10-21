@@ -15,7 +15,7 @@ import java.time.LocalDate;
 public class BookingRequest {
 
     @NotBlank
-    int nrOfAssignedSeats;
+    private int nrOfAssignedSeats;
     @NotBlank
     private String theater;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")

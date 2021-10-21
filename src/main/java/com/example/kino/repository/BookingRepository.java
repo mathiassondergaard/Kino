@@ -15,4 +15,5 @@ public interface BookingRepository extends JpaRepository<Booking, Long> {
 
     @Query("SELECT new com.example.kino.payload.response.BookingResponse(b.bookingId, b.nrOfAssignedSeats, b.theater, b.movie.movieTitle, b.showingDate, b.showingTime) FROM Booking b WHERE b.showingDate = :date")
     List<BookingResponse> findBookingsMatchingDate(@Param("date") LocalDate localDate);
+
 }
