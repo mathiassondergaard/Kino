@@ -9,7 +9,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.List;
 import java.util.Objects;
 
 @Getter
@@ -44,14 +43,6 @@ public class Movie implements Serializable {
 
     @Column(name = "movie_actors")
     private String movieActors;
-
-    @Column(name = "start_date")
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate utilStartDate;
-
-    @Column(name = "end_date")
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate utilEndDate;
 
     @Override
     public boolean equals(Object o) {

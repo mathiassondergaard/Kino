@@ -7,8 +7,8 @@ import lombok.ToString;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.sql.Date;
-import java.sql.Time;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Objects;
 
 @Getter
@@ -23,21 +23,25 @@ public class Booking implements Serializable {
 
     @Id
     @Column(name = "booking_id")
-    private Long bookingId;
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "booking_seq_gen")
     @SequenceGenerator(name = "booking_seq_gen", sequenceName = "booking_seq_gen", allocationSize = 1)
-
-    @Column(name = "booking_date")
-    private Date date;
-
-    @Column(name = "booking_time")
-    private Time time;
+    private Long bookingId;
 
     @Column(name = "booking_seats")
     private int nrOfAssignedSeats;
 
     @Column(name = "booking_theater")
     private String theater;
+
+    @OneToOne(cascade = {CascadeType.MERGE, CascadeType.DETACH})
+    @JoinColumn(name = "movie_id")
+    private Movie movie;
+
+    @Column(name = "showing_date")
+    private LocalDate showingDate;
+
+    @Column(name = "showing_time")
+    private String showingTime;
 
     @Override
     public boolean equals(Object o) {
