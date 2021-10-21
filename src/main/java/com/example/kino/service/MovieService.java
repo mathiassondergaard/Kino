@@ -13,7 +13,7 @@ import java.util.List;
 
 
 @Service
-public class MovieService extends Utilities {
+public class MovieService {
 
     private MovieRepository movieRepository;
 
