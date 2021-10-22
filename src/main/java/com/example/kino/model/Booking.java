@@ -60,4 +60,12 @@ public class Booking implements Serializable {
         this.bookingId = bookingId;
         this.showingDate = showingDate;
     }
+    //For testing purposes
+    public Booking(Long bookingId, LocalDate showingDate, int nrOfAssignedSeats, String theater) {
+        this.bookingId = bookingId;
+        this.showingDate = showingDate;
+        this.nrOfAssignedSeats = nrOfAssignedSeats;
+        this.theater = theater;
+    }
+
 }
