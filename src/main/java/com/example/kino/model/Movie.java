@@ -4,11 +4,8 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
-import org.springframework.format.annotation.DateTimeFormat;
-
 import javax.persistence.*;
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.util.Objects;
 
 @Getter
@@ -58,4 +55,9 @@ public class Movie implements Serializable {
     }
 
 
+    //For testing purposes
+    public Movie(Long movieID, String movieTitle) {
+        this.movieID = movieID;
+        this.movieTitle = movieTitle;
+    }
 }

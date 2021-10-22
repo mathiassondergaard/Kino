@@ -4,11 +4,9 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.Objects;
 
 @Getter
@@ -54,5 +52,12 @@ public class Booking implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(bookingId);
+    }
+
+
+    //For testing purposes
+    public Booking(Long bookingId, LocalDate showingDate) {
+        this.bookingId = bookingId;
+        this.showingDate = showingDate;
     }
 }

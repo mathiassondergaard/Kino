@@ -6,11 +6,8 @@ import com.example.kino.payload.request.BookingRequest;
 import com.example.kino.payload.response.BookingResponse;
 import com.example.kino.repository.BookingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Service;
-
 import javax.persistence.NoResultException;
-import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;

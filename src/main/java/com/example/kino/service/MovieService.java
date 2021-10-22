@@ -4,11 +4,8 @@ package com.example.kino.service;
 import com.example.kino.model.Movie;
 import com.example.kino.repository.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Service;
 import javax.persistence.NoResultException;
-import javax.transaction.Transactional;
-import java.time.DateTimeException;
 import java.util.List;
 
 
@@ -23,7 +20,7 @@ public class MovieService {
     }
 
     public Movie findById(Long id) {
-        return movieRepository.findById(id).orElseThrow(()-> new NoResultException("Movie with id: " + id + " does not exist!"));
+        return movieRepository.findById(id).orElseThrow(() -> new NoResultException("Movie with id: " + id + " does not exist!"));
     }
 
     public List<Movie> findAllMovies() {
@@ -35,7 +32,7 @@ public class MovieService {
     }
 
     public Movie updateMovie(Movie movie, Long id) {
-        Movie movieData = movieRepository.findById(id).orElseThrow(()-> new NoResultException("Movie with id: " + id + " does not exist!"));
+        Movie movieData = movieRepository.findById(id).orElseThrow(() -> new NoResultException("Movie with id: " + id + " does not exist!"));
         movieData.setMovieID(movie.getMovieID());
         movieData.setMovieTitle(movie.getMovieTitle());
         movieData.setMovieDuration(movie.getMovieDuration());

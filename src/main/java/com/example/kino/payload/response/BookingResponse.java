@@ -2,7 +2,6 @@ package com.example.kino.payload.response;
 
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
-
 import java.time.LocalDate;
 
 @Data
